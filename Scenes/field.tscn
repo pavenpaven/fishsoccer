@@ -7,6 +7,7 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pkatj"]
 normal = Vector2(1, 0)
+distance = 7.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8juqs"]
 distance = -649.0
@@ -28,39 +29,35 @@ shape = SubResource("WorldBoundaryShape2D_pkatj")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(7, -320)
 shape = SubResource("WorldBoundaryShape2D_8juqs")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(1153, 2)
+position = Vector2(583, 5)
 shape = SubResource("WorldBoundaryShape2D_s2mji")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(-1, 1)
+position = Vector2(7, 5)
 shape = SubResource("WorldBoundaryShape2D_bbyqf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(577, 321)
+position = Vector2(295.00003, 167)
+scale = Vector2(44.80721, 11989.085)
+zoom = Vector2(2, 2)
 
 [node name="Ball" parent="." instance=ExtResource("2_s2mji")]
-position = Vector2(495, 278)
+position = Vector2(292, 164)
 
 [node name="FotballPlayer" parent="." instance=ExtResource("1_8juqs")]
-position = Vector2(191, 174)
-accel = 200
-bouncecol = 2.0
-drag = 0.4
-kickpower = 1.0
+position = Vector2(101, 198)
+isorange = false
 
 [node name="FotballPlayer2" parent="." instance=ExtResource("1_8juqs")]
-position = Vector2(262, 235)
-accel = 200
-bouncecol = 2.0
-drag = 0.4
-kickpower = 1.0
+position = Vector2(431, 255)
 
 [node name="Control" parent="." instance=ExtResource("3_bbyqf")]
 offset_left = 269.0
