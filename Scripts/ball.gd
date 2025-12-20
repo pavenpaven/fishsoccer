@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
 @export var drag = 0.2
+var is_player = false
+var is_ball   = true
+
+func seagrassed():
+	pass
 
 func _ready():
 	Globals.ball_pos = position

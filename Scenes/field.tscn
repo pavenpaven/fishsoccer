@@ -1,4 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbhnvnrnbpmqf"]
+[gd_scene load_steps=9 format=3 uid="uid://dbhnvnrnbpmqf"]
+
+[ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
+[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
+[ext_resource type="PackedScene" uid="uid://drd73g7dlc3op" path="res://Scenes/control.tscn" id="3_bbyqf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pkatj"]
 normal = Vector2(1, 0)
@@ -13,6 +18,7 @@ normal = Vector2(-1, 0)
 normal = Vector2(0.01574608, 0.999876)
 
 [node name="field" type="Node2D"]
+script = ExtResource("1_s1lr2")
 
 [node name="worldboundary1" type="StaticBody2D" parent="."]
 
@@ -38,3 +44,26 @@ shape = SubResource("WorldBoundaryShape2D_bbyqf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(577, 321)
+
+[node name="Ball" parent="." instance=ExtResource("2_s2mji")]
+position = Vector2(495, 278)
+
+[node name="FotballPlayer" parent="." instance=ExtResource("1_8juqs")]
+position = Vector2(191, 174)
+accel = 200
+bouncecol = 2.0
+drag = 0.4
+kickpower = 1.0
+
+[node name="FotballPlayer2" parent="." instance=ExtResource("1_8juqs")]
+position = Vector2(262, 235)
+accel = 200
+bouncecol = 2.0
+drag = 0.4
+kickpower = 1.0
+
+[node name="Control" parent="." instance=ExtResource("3_bbyqf")]
+offset_left = 269.0
+offset_top = 42.0
+offset_right = 309.0
+offset_bottom = 82.0
