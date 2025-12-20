@@ -11,4 +11,4 @@ func _physics_process(delta):
 	if collision_info:
 		if collision_info.get_collider().name=="Ball":
 			collision_info.get_collider().velocity += velocity.normalized()*(velocity.normalized().dot(velocity) - velocity.normalized().dot(collision_info.get_collider().velocity)) 
-		velocity = velocity.bounce(collision_info.get_normal()) / 2
+		velocity = velocity.bounce(collision_info.get_normal()) / bouncecol
