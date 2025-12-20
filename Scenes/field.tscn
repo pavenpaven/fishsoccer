@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbhnvnrnbpmqf"]
+[gd_scene load_steps=8 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
 [ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
-[ext_resource type="PackedScene" uid="uid://drd73g7dlc3op" path="res://Scenes/control.tscn" id="3_bbyqf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pkatj"]
 normal = Vector2(1, 0)
@@ -59,8 +58,9 @@ isorange = false
 [node name="FotballPlayer2" parent="." instance=ExtResource("1_8juqs")]
 position = Vector2(431, 255)
 
-[node name="Control" parent="." instance=ExtResource("3_bbyqf")]
-offset_left = 269.0
-offset_top = 42.0
-offset_right = 309.0
-offset_bottom = 82.0
+[node name="FotballPlayer3" parent="." instance=ExtResource("1_8juqs")]
+position = Vector2(109, 269)
+
+[node name="FotballPlayer4" parent="." instance=ExtResource("1_8juqs")]
+position = Vector2(406, 98)
+isorange = false

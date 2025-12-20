@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var drag = 0.2
+@export var drag = 1.5
 var is_player = false
 var is_ball   = true
 var collision = true

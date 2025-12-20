@@ -9,7 +9,8 @@ class_name FotballPlayer extends CharacterBody2D
 @export var unprecissionshot = 30.0
 @export var isorange         = true
 @export var aitan            = 2
-@export var behindball       = 20
+@export var behindball       = 60
+@export var sideball         = 200
 var is_player = true
 var is_ball   = false
 var animation = null
@@ -28,6 +29,8 @@ func seagrassed():
 
 func _ready():
 	animation = get_node("animation")
+	if not isorange:
+		animation.animation = "pdefault"
 	timer     = $Timer	
 
 func rot(v):
@@ -53,7 +56,7 @@ func ai():
 	if prop < -aitan: # this case is when player is behind ball
 		return Globals.ball_pos - position
 	elif prop > aitan:  # this cas is when player is infornt of ball
-		return xalg * rot(dir)
+		return (Globals.ball_pos + rot(dir) * sign(xalg) * sideball - position)
 	else: # this case is when player is to the front of ball
 		return (Globals.ball_pos - behindball*dir.normalized() - position)
 
