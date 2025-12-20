@@ -1,15 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbhnvnrnbpmqf"]
+[gd_scene load_steps=35 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://5nsbxn11hdvh" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
+[ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
+[ext_resource type="Texture2D" uid="uid://tug36ts145li" path="res://Assets/octopus.png" id="6_q1k20"]
+[ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="7_cryvv"]
+[ext_resource type="Texture2D" uid="uid://blg2eri0jfkdn" path="res://Assets/pompomcrabsprite.PNG" id="8_he1kn"]
+[ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="9_uhpha"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pkatj"]
 normal = Vector2(1, 0)
-distance = 7.0
+distance = 92.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8juqs"]
-distance = -649.0
+distance = -638.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s2mji"]
 normal = Vector2(-1, 0)
@@ -17,8 +23,197 @@ normal = Vector2(-1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bbyqf"]
 normal = Vector2(0.01574608, 0.999876)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
+atlas = ExtResource("3_s1lr2")
+region = Rect2(0, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxj5q"]
+atlas = ExtResource("3_s1lr2")
+region = Rect2(0, 320, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvgtc"]
+atlas = ExtResource("3_s1lr2")
+region = Rect2(0, 640, 480, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvtm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fir65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxj5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvgtc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og6s1"]
+atlas = ExtResource("6_q1k20")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb2ue"]
+atlas = ExtResource("6_q1k20")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mg2h"]
+atlas = ExtResource("6_q1k20")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdvle"]
+atlas = ExtResource("6_q1k20")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t20c"]
+atlas = ExtResource("6_q1k20")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uadn"]
+atlas = ExtResource("6_q1k20")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_blw65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og6s1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb2ue")
+}],
+"loop": true,
+"name": &"armout",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mg2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdvle")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t20c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3uadn")
+}],
+"loop": true,
+"name": &"seagrass",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mchkl"]
+atlas = ExtResource("7_cryvv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1bir"]
+atlas = ExtResource("7_cryvv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3s6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mchkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1bir")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf3c4"]
+atlas = ExtResource("8_he1kn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2ds7"]
+atlas = ExtResource("8_he1kn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0856l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf3c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2ds7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bthms"]
+atlas = ExtResource("9_uhpha")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do7ap"]
+atlas = ExtResource("9_uhpha")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6h13"]
+atlas = ExtResource("9_uhpha")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eecyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bthms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do7ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6h13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="field" type="Node2D"]
 script = ExtResource("1_s1lr2")
+
+[node name="seats" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="seats"]
+position = Vector2(565, 38)
+rotation = 1.5707964
+texture = ExtResource("2_fir65")
+
+[node name="Sprite2D2" type="Sprite2D" parent="seats"]
+position = Vector2(565, 102)
+rotation = 1.5707964
+texture = ExtResource("2_fir65")
+
+[node name="Sprite2D3" type="Sprite2D" parent="seats"]
+position = Vector2(565, 166)
+rotation = 1.5707964
+texture = ExtResource("2_fir65")
+
+[node name="Sprite2D4" type="Sprite2D" parent="seats"]
+position = Vector2(565, 230)
+rotation = 1.5707964
+texture = ExtResource("2_fir65")
+
+[node name="Sprite2D5" type="Sprite2D" parent="seats"]
+position = Vector2(565, 294)
+rotation = 1.5707964
+texture = ExtResource("2_fir65")
 
 [node name="worldboundary1" type="StaticBody2D" parent="."]
 
@@ -28,39 +223,81 @@ shape = SubResource("WorldBoundaryShape2D_pkatj")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(7, -320)
+position = Vector2(8, -324)
 shape = SubResource("WorldBoundaryShape2D_8juqs")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(583, 5)
+position = Vector2(494, 6)
 shape = SubResource("WorldBoundaryShape2D_s2mji")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(7, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(7, 5)
+position = Vector2(94, 19)
 shape = SubResource("WorldBoundaryShape2D_bbyqf")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(295.00003, 167)
-scale = Vector2(44.80721, 11989.085)
+position = Vector2(319.99997, 166)
 zoom = Vector2(2, 2)
 
 [node name="Ball" parent="." instance=ExtResource("2_s2mji")]
 position = Vector2(292, 164)
 
-[node name="FotballPlayer" parent="." instance=ExtResource("1_8juqs")]
-position = Vector2(101, 198)
+[node name="background" type="AnimatedSprite2D" parent="."]
+z_index = -5
+position = Vector2(293, 166)
+sprite_frames = SubResource("SpriteFrames_kvtm8")
+autoplay = "default"
+frame_progress = 0.17477226
+
+[node name="fotballplayers" type="Node" parent="."]
+
+[node name="FotballPlayer" parent="fotballplayers" instance=ExtResource("1_8juqs")]
+position = Vector2(158, 74)
 isorange = false
 
-[node name="FotballPlayer2" parent="." instance=ExtResource("1_8juqs")]
-position = Vector2(431, 255)
+[node name="FotballPlayer2" parent="fotballplayers" instance=ExtResource("1_8juqs")]
+position = Vector2(427, 259)
 
-[node name="FotballPlayer3" parent="." instance=ExtResource("1_8juqs")]
-position = Vector2(109, 269)
+[node name="FotballPlayer3" parent="fotballplayers" instance=ExtResource("1_8juqs")]
+position = Vector2(156, 258)
 
-[node name="FotballPlayer4" parent="." instance=ExtResource("1_8juqs")]
-position = Vector2(406, 98)
+[node name="FotballPlayer4" parent="fotballplayers" instance=ExtResource("1_8juqs")]
+position = Vector2(430, 72)
 isorange = false
+
+[node name="octopus" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(562, 38)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_blw65")
+animation = &"seagrass"
+autoplay = "default"
+
+[node name="fishfan" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(566, 106)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_t3s6f")
+autoplay = "default"
+frame_progress = 0.111549005
+
+[node name="pompomcrab" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(566, 169)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_0856l")
+autoplay = "default"
+frame_progress = 0.79162043
+
+[node name="bluecrab" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(567, 229.99998)
+rotation = -1.5707964
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_eecyo")
+autoplay = "default"
+frame_progress = 0.66310775

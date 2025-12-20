@@ -8,9 +8,10 @@ class_name FotballPlayer extends CharacterBody2D
 @export var seagrassstun = 2.0
 @export var unprecissionshot = 30.0
 @export var isorange         = true
-@export var aitan            = 2
-@export var behindball       = 60
+@export var aitan            = 1
+@export var behindball       = 20
 @export var sideball         = 200
+@export var aidebug			 = false
 var is_player = true
 var is_ball   = false
 var animation = null
@@ -37,6 +38,7 @@ func rot(v):
 	return Vector2(-v.y, v.x)
 	
 func ai():	
+	var center = position #+ Vector2(16, 16)
 	var target
 	if isorange:
 		target = Globals.ogoal
@@ -45,8 +47,8 @@ func ai():
 
 	var dir = (target - Globals.ball_pos).normalized()
 
-	var xalg = rot(dir).dot(position - Globals.ball_pos)
-	var yalg = dir.dot(position - Globals.ball_pos)
+	var xalg = rot(dir).dot(center - Globals.ball_pos)
+	var yalg = dir.dot(center - Globals.ball_pos)
 
 	if xalg == 0:
 		return Vector2(0,0)
@@ -54,12 +56,16 @@ func ai():
 	var prop = yalg / abs(xalg)
 
 	if prop < -aitan: # this case is when player is behind ball
-		return Globals.ball_pos - position
-	elif prop > aitan:  # this cas is when player is infornt of ball
-		return (Globals.ball_pos + rot(dir) * sign(xalg) * sideball - position)
-	else: # this case is when player is to the front of ball
-		return (Globals.ball_pos - behindball*dir.normalized() - position)
-
+		if aidebug:
+			animation.animation="odefault"
+		return Globals.ball_pos - center
+	elif prop > aitan:  # this cas is when player is infront of ball
+		return (Globals.ball_pos + rot(dir) * sign(xalg) * sideball - center)
+	else: # this case is when player is beside the ball
+		if aidebug:
+			animation.animation="placeholder"
+		return (Globals.ball_pos - behindball*dir.normalized() - center)
+		
 func _physics_process(delta):
 	if not is_down:
 		velocity += ai().normalized() * accel * delta * Globals.physics_speed

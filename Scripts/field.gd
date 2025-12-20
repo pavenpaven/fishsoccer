@@ -6,6 +6,6 @@ func _input(event):
 			var scene = load("res://Scenes/seagrass.tscn")
 			var instance = scene.instantiate()		
 			add_child(instance)
-			instance.position = (event.position + Vector2(5,5)) / 2
+			instance.position = (event.position + Vector2(65,10)) / 2
 			print(instance.position)
 			print("added instance")
