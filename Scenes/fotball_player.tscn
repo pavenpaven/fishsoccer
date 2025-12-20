@@ -1,15 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://c76pmhb8fsdbd"]
+[gd_scene load_steps=7 format=3 uid="uid://c76pmhb8fsdbd"]
 
 [ext_resource type="Texture2D" uid="uid://cn3jb10nnm85w" path="res://Assets/pixilart-sprite.png" id="1_ikyhy"]
 [ext_resource type="Script" uid="uid://c4hnibniv14h1" path="res://Scripts/player.gd" id="2_vyhx5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vyhx5"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyhx5"]
+atlas = ExtResource("1_ikyhy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnvnn"]
+atlas = ExtResource("1_ikyhy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0g5x3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyhx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnvnn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="FotballPlayer" type="CharacterBody2D"]
 script = ExtResource("2_vyhx5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ikyhy")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vyhx5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0g5x3")
+autoplay = "default"

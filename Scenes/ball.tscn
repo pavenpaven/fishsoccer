@@ -1,15 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmk2buejfmaj3"]
+[gd_scene load_steps=8 format=3 uid="uid://dmk2buejfmaj3"]
 
 [ext_resource type="Texture2D" uid="uid://bnumtsofh5m36" path="res://Assets/socceranim.png" id="1_d60mj"]
 [ext_resource type="Script" uid="uid://cy1yrvw2cpvdo" path="res://Scripts/ball.gd" id="1_ij5cq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij5cq"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij5cq"]
+atlas = ExtResource("1_d60mj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_376qj"]
+atlas = ExtResource("1_d60mj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yk4cr"]
+atlas = ExtResource("1_d60mj")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aw2wy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij5cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_376qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yk4cr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Ball" type="CharacterBody2D"]
 script = ExtResource("1_ij5cq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_d60mj")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ij5cq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_aw2wy")
+autoplay = "default"
