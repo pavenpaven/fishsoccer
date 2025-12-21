@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1muj5axy3nym"]
+
+[ext_resource type="Texture2D" uid="uid://ccgqr1r3jehs2" path="res://Assets/goalfish.PNG" id="1_paeek"]
+[ext_resource type="Script" uid="uid://0a18mj5wvopl" path="res://Scripts/goal.gd" id="1_s0pnd"]
+
+[node name="Goal" type="StaticBody2D"]
+script = ExtResource("1_s0pnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("1_paeek")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(20, -53, 50, -53, 52, -52, 52, 49, 50, 50, 18, 50, 18, 39, 49, 39, 48, -46, 19, -46)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(48, -46, 49, 39, 33, 39, 33, -47)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_entered"]
