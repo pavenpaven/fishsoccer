@@ -270,6 +270,7 @@ frame_progress = 0.663108
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_cryvv")
 autoplay = true
+bus = &"Music"
 
 [node name="Goal" parent="." instance=ExtResource("11_he1kn")]
 position = Vector2(477, 166)
