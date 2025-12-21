@@ -1,27 +1,15 @@
-[gd_scene load_steps=35 format=3 uid="uid://dbhnvnrnbpmqf"]
+[gd_scene load_steps=32 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://5nsbxn11hdvh" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
-[ext_resource type="Texture2D" uid="uid://tug36ts145li" path="res://Assets/octopus.png" id="6_q1k20"]
+[ext_resource type="Texture2D" uid="uid://dhbjkru2x558j" path="res://Assets/octopus.png" id="6_q1k20"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="7_cryvv"]
 [ext_resource type="Texture2D" uid="uid://blg2eri0jfkdn" path="res://Assets/pompomcrabsprite.PNG" id="8_he1kn"]
 [ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="9_uhpha"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pkatj"]
-normal = Vector2(1, 0)
-distance = 92.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8juqs"]
-distance = -638.0
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_s2mji"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bbyqf"]
-normal = Vector2(0.01574608, 0.999876)
+[ext_resource type="PackedScene" uid="uid://c1muj5axy3nym" path="res://Scenes/goal.tscn" id="10_cryvv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
 atlas = ExtResource("3_s1lr2")
@@ -215,30 +203,6 @@ position = Vector2(565, 294)
 rotation = 1.5707964
 texture = ExtResource("2_fir65")
 
-[node name="worldboundary1" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="worldboundary1"]
-shape = SubResource("WorldBoundaryShape2D_pkatj")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(8, -324)
-shape = SubResource("WorldBoundaryShape2D_8juqs")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(494, 6)
-shape = SubResource("WorldBoundaryShape2D_s2mji")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(7, -1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(94, 19)
-shape = SubResource("WorldBoundaryShape2D_bbyqf")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(319.99997, 166)
 zoom = Vector2(2, 2)
@@ -301,3 +265,27 @@ scale = Vector2(1.2, 1.2)
 sprite_frames = SubResource("SpriteFrames_eecyo")
 autoplay = "default"
 frame_progress = 0.66310775
+
+[node name="Ball2" parent="." instance=ExtResource("2_s2mji")]
+position = Vector2(182, 186)
+is_fake = true
+
+[node name="OrangeGoal" parent="." instance=ExtResource("10_cryvv")]
+position = Vector2(477, 168)
+
+[node name="PurpleGoal" parent="." instance=ExtResource("10_cryvv")]
+position = Vector2(109, 163)
+scale = Vector2(-1, -1)
+
+[node name="worldboundary" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="worldboundary"]
+polygon = PackedVector2Array(91, 316, 91, 216, 59, 216, 59, 113, 91, 113, 91, 17, 32, 19, 32, 316)
+
+[node name="worldboundary2" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="worldboundary2"]
+polygon = PackedVector2Array(1, 0, 32, 19, 90, 17, 494, 17, 495, 114, 523, 116, 524, 218, 495, 218, 496, 316, 91, 316, 32, 316, 32, 328, 539, 328, 540, 4, 33, 4)
+
+[connection signal="goal" from="OrangeGoal" to="." method="_on_orange_goal_goal"]
+[connection signal="goal" from="PurpleGoal" to="." method="_on_purple_goal_goal"]

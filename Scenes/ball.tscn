@@ -1,9 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmk2buejfmaj3"]
+[gd_scene load_steps=12 format=3 uid="uid://dmk2buejfmaj3"]
 
 [ext_resource type="Texture2D" uid="uid://bnumtsofh5m36" path="res://Assets/socceranim.png" id="1_d60mj"]
 [ext_resource type="Script" uid="uid://cy1yrvw2cpvdo" path="res://Scripts/ball.gd" id="1_ij5cq"]
+[ext_resource type="Texture2D" uid="uid://s0qi2at7iprf" path="res://Assets/fakeballanim.png" id="2_376qj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij5cq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw2wy"]
+atlas = ExtResource("2_376qj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vblhy"]
+atlas = ExtResource("2_376qj")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31idh"]
+atlas = ExtResource("2_376qj")
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ij5cq"]
 atlas = ExtResource("1_d60mj")
@@ -19,6 +32,20 @@ region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aw2wy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw2wy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vblhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31idh")
+}],
+"loop": true,
+"name": &"decoy",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ij5cq")
@@ -42,8 +69,13 @@ shape = SubResource("CircleShape2D_ij5cq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aw2wy")
+animation = &"decoy"
 autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
