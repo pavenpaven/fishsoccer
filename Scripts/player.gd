@@ -1,5 +1,5 @@
 class_name FotballPlayer extends CharacterBody2D
-
+@onready var fishfall: AudioStreamPlayer2D = $fishfall
 @export var accel     = 500
 @export var bouncecol = 1.5
 @export var drag      = 0.7
@@ -13,6 +13,8 @@ class_name FotballPlayer extends CharacterBody2D
 @export var behindball       = 20
 @export var sideball         = 200
 @export var aidebug			 = false
+@onready var soundtimer: Timer = $soundtimer
+
 var is_player = true
 var is_ball   = false
 var animation = null
@@ -27,6 +29,8 @@ func sigmoid(x):
 	return a
 
 func seagrassed():
+	if not is_down:
+		$soundtimer.start(0.3)
 	if isorange:
 		animation.animation = "ofall"
 	else:
@@ -34,13 +38,17 @@ func seagrassed():
 	is_down = true
 	timer.start(seagrassstun/Globals.physics_speed)
 	print("sea")
-
+	
+	
+		
+		
 func _ready():
 	animation = get_node("animation")
 	isorange = not isorange
 	if not isorange:
 		animation.animation = "pdefault"
 	timer = $Timer	
+	
 
 func rot(v):
 	return Vector2(-v.y, v.x)
@@ -103,7 +111,7 @@ func _physics_process(delta):
 		if collision_info.get_collider().is_class("CharacterBody2D") and collision:
 			var b = collision_info.get_collider().velocity
 			if collision_info.get_collider().is_ball:
-				collision_info.get_collider().velocity += ai_kick()
+				collision_info.get_collider().on_kicked(ai_kick())
 			elif collision_info.get_collider().is_player:
 				collision_info.get_collider().velocity += velocity.normalized()*(velocity.normalized().dot(velocity - b)) * pushpower
 		velocity = velocity.bounce(collision_info.get_normal()) / bouncecol
@@ -115,3 +123,8 @@ func _on_timer_timeout() -> void:
 		animation.play("odefault")
 	else:
 		animation.play("pdefault")
+
+
+func _on_soundtimer_timeout() -> void:
+	$fishfall.play()
+	print("wawa")

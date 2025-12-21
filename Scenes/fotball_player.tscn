@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c76pmhb8fsdbd"]
+[gd_scene load_steps=32 format=3 uid="uid://c76pmhb8fsdbd"]
 
 [ext_resource type="Texture2D" uid="uid://cn3jb10nnm85w" path="res://Assets/pixilart-sprite.png" id="1_ikyhy"]
 [ext_resource type="Script" uid="uid://d0xgcrswic3wx" path="res://Scripts/player.gd" id="2_vyhx5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3lc6s7l8qc3a" path="res://Assets/fishnaldo_andra.png" id="4_slnvg"]
 [ext_resource type="Texture2D" uid="uid://vtdcmu7aks5a" path="res://Assets/fishrooll_andra.png" id="5_oyug6"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="6_oyug6"]
+[ext_resource type="AudioStream" uid="uid://ch32vewfc175p" path="res://Assets/fishfall.mp3" id="7_5rf1s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vyhx5"]
 
@@ -204,4 +205,12 @@ autoplay = "odefault"
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="soundtimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="fishfall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5rf1s")
+bus = &"sfx"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="soundtimer" to="." method="_on_soundtimer_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmk2buejfmaj3"]
+[gd_scene load_steps=9 format=3 uid="uid://dmk2buejfmaj3"]
 
 [ext_resource type="Texture2D" uid="uid://bnumtsofh5m36" path="res://Assets/socceranim.png" id="1_d60mj"]
-[ext_resource type="Script" uid="uid://cy1yrvw2cpvdo" path="res://Scripts/ball.gd" id="1_ij5cq"]
+[ext_resource type="Script" uid="uid://vfc20wy6samq" path="res://Scripts/ball.gd" id="1_ij5cq"]
+[ext_resource type="AudioStream" uid="uid://bmtnq55h7oiro" path="res://Assets/footballkick.mp3" id="3_376qj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ij5cq"]
 
@@ -45,5 +46,8 @@ sprite_frames = SubResource("SpriteFrames_aw2wy")
 autoplay = "default"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="footballsound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_376qj")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

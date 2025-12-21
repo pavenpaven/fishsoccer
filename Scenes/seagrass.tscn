@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://denvm8gwgwmm5"]
+[gd_scene load_steps=14 format=3 uid="uid://denvm8gwgwmm5"]
 
-[ext_resource type="Script" uid="uid://cvfijbdjm1hah" path="res://Scripts/seagrass.gd" id="1_1p6a4"]
+[ext_resource type="Script" uid="uid://c4e8qavdr5qf2" path="res://Scripts/seagrass.gd" id="1_1p6a4"]
 [ext_resource type="Texture2D" uid="uid://l37danc3kegd" path="res://Assets/seagrass.png" id="2_1p6a4"]
+[ext_resource type="AudioStream" uid="uid://ccn8eff21f4qw" path="res://Assets/seaweedlandsfx.mp3" id="3_skl4x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yhknd"]
 radius = 19.75
@@ -88,6 +89,10 @@ position = Vector2(0, 0.5000007)
 scale = Vector2(1.0625, 1.0312501)
 sprite_frames = SubResource("SpriteFrames_s8854")
 autoplay = "default"
+
+[node name="seagrasssound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_skl4x")
+bus = &"sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finish"]
