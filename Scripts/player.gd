@@ -11,7 +11,7 @@ class_name FotballPlayer extends CharacterBody2D
 @export var isorange         = true
 @export var aitan            = 1
 @export var behindball       = 20
-@export var sideball         = 200
+@export var sideball         = 100
 @export var aidebug			 = false
 @onready var soundtimer: Timer = $soundtimer
 
@@ -22,10 +22,14 @@ var is_down = false
 var timer = null
 var collision = true
 
+func norm(v):
+	return sqrt(v.dot(v))
+
+func dist(v,w):
+	return norm(v - w)
 
 func sigmoid(x):
 	var a = ((exp(x)/(exp(x) + 1)) - 0.5)*2
-	print(x, "  :  ",a)
 	return a
 
 func seagrassed():
@@ -37,11 +41,7 @@ func seagrassed():
 		animation.animation = "pfall"
 	is_down = true
 	timer.start(seagrassstun/Globals.physics_speed)
-	print("sea")
-	
-	
-		
-		
+
 func _ready():
 	animation = get_node("animation")
 	isorange = not isorange
@@ -52,7 +52,14 @@ func _ready():
 
 func rot(v):
 	return Vector2(-v.y, v.x)
-	
+
+func close_ball():
+	var ball = Globals.balls[0]
+	for i in Globals.balls:
+		if dist(i.position, position) < dist(ball.position, position):
+			ball = i
+	return ball
+
 func ai_move_dir():	
 	var center = position #+ Vector2(16, 16)
 	var target
@@ -61,10 +68,12 @@ func ai_move_dir():
 	else:
 		target = Globals.pgoal
 
-	var dir = (target - Globals.ball_pos).normalized()
+	var ball_pos = close_ball().position
+		
+	var dir = (target - ball_pos).normalized()
 
-	var xalg = rot(dir).dot(center - Globals.ball_pos)
-	var yalg = dir.dot(center - Globals.ball_pos)
+	var xalg = rot(dir).dot(center - ball_pos)
+	var yalg = dir.dot(center - ball_pos)
 
 	if xalg == 0:
 		return Vector2(0,0)
@@ -74,15 +83,15 @@ func ai_move_dir():
 	if prop < -aitan: # this case is when player is behind ball
 		if aidebug:
 			animation.animation="odefault"
-		return Globals.ball_pos - center
+		return ball_pos - center
 	elif prop > aitan:  # this cas is when player is infront of ball
 		if aidebug:
 			animation.animation="pdefault"
-		return (Globals.ball_pos + rot(dir) * sign(xalg) * sideball - center)
+		return (ball_pos + rot(dir) * sign(xalg) * sideball - center)
 	else: # this case is when player is beside the ball
 		if aidebug:
 			animation.animation="placeholder"
-		return (Globals.ball_pos - behindball*dir.normalized() - center)
+		return (ball_pos - behindball*dir.normalized() - center)
 
 func ai_kick():
 	var target
@@ -90,7 +99,7 @@ func ai_kick():
 		target = Globals.ogoal
 	else:
 		target = Globals.pgoal
-	var b = Globals.ball_pos
+	var b = close_ball().position
 	return (target - position).normalized()*kickpower*(sigmoid(abs(velocity.normalized().dot(velocity - b))/100)*3 + 1)
 	#return velocity.normalized()*(velocity.normalized().dot(velocity - b)) * kickpower
 	
@@ -100,7 +109,7 @@ func _physics_process(delta):
 	else:
 		velocity = (1 - delta*falldowndrag*Globals.physics_speed)*velocity
 	velocity = (1 - delta*drag)*velocity
-	if (Globals.ball_pos - position).x < 0:
+	if (close_ball().position - position).x < 0:
 		animation.flip_h = true
 	else:
 		animation.flip_h = false
@@ -110,7 +119,7 @@ func _physics_process(delta):
 	if collision_info:
 		if collision_info.get_collider().is_class("CharacterBody2D") and collision:
 			var b = collision_info.get_collider().velocity
-			if collision_info.get_collider().is_ball:
+			if collision_info.get_collider().is_ball and not is_down:
 				collision_info.get_collider().on_kicked(ai_kick())
 			elif collision_info.get_collider().is_player:
 				collision_info.get_collider().velocity += velocity.normalized()*(velocity.normalized().dot(velocity - b)) * pushpower
