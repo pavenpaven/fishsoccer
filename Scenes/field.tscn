@@ -296,7 +296,8 @@ offset_right = 230.0
 offset_bottom = -3.0
 theme_override_fonts/font = ExtResource("14_eb2ue")
 theme_override_font_sizes/font_size = 75
-text = "test"
+text = "0
+"
 
 [node name="PurpleScore" type="Label" parent="."]
 texture_filter = 1
@@ -307,7 +308,7 @@ offset_right = 360.0
 offset_bottom = -4.0
 theme_override_fonts/font = ExtResource("14_eb2ue")
 theme_override_font_sizes/font_size = 75
-text = "test"
+text = "0"
 
 [node name="Time" type="Label" parent="."]
 texture_filter = 1
