@@ -11,21 +11,27 @@ class_name FotballPlayer extends CharacterBody2D
 @export var isorange         = true
 @export var aitan            = 1
 @export var behindball       = 20
-@export var sideball         = 200
+@export var sideball         = 60
 @export var aidebug			 = false
+@export var frozen_length    = 10
 @onready var soundtimer: Timer = $soundtimer
 
 var is_player = true
 var is_ball   = false
 var animation = null
-var is_down = false
+var is_down   = false
+var is_frozen = false
 var timer = null
 var collision = true
 
+func norm(v):
+	return sqrt(v.dot(v))
+
+func dist(v,w):
+	return norm(v - w)
 
 func sigmoid(x):
 	var a = ((exp(x)/(exp(x) + 1)) - 0.5)*2
-	print(x, "  :  ",a)
 	return a
 
 func seagrassed():
@@ -37,23 +43,34 @@ func seagrassed():
 		animation.animation = "pfall"
 	is_down = true
 	timer.start(seagrassstun/Globals.physics_speed)
-	print("sea")
+
+func freeze():
+	is_frozen = true
+	$ices.position = Vector2(2,-5)
+	$Freeze.start(frozen_length)
 	
-	
-		
-		
 func _ready():
 	animation = get_node("animation")
 	isorange = not isorange
 	if not isorange:
 		animation.animation = "pdefault"
+	$ices.position = Vector2(-999999,0)
 	timer = $Timer	
 	
 
 func rot(v):
 	return Vector2(-v.y, v.x)
-	
-func ai_move_dir():	
+
+func close_ball():
+	var ball = Globals.balls[0]
+	for i in Globals.balls:
+		if dist(i.position, position) < dist(ball.position, position):
+			ball = i
+	return ball
+
+func ai_move_dir():
+	if is_frozen:
+		return Vector2(0,0)
 	var center = position #+ Vector2(16, 16)
 	var target
 	if isorange:
@@ -61,10 +78,12 @@ func ai_move_dir():
 	else:
 		target = Globals.pgoal
 
-	var dir = (target - Globals.ball_pos).normalized()
+	var ball_pos = close_ball().position
+		
+	var dir = (target - ball_pos).normalized()
 
-	var xalg = rot(dir).dot(center - Globals.ball_pos)
-	var yalg = dir.dot(center - Globals.ball_pos)
+	var xalg = rot(dir).dot(center - ball_pos)
+	var yalg = dir.dot(center - ball_pos)
 
 	if xalg == 0:
 		return Vector2(0,0)
@@ -74,23 +93,25 @@ func ai_move_dir():
 	if prop < -aitan: # this case is when player is behind ball
 		if aidebug:
 			animation.animation="odefault"
-		return Globals.ball_pos - center
+		return ball_pos - center
 	elif prop > aitan:  # this cas is when player is infront of ball
 		if aidebug:
 			animation.animation="pdefault"
-		return (Globals.ball_pos + rot(dir) * sign(xalg) * sideball - center)
+		return (ball_pos + rot(dir) * sign(xalg) * sideball - center)
 	else: # this case is when player is beside the ball
 		if aidebug:
 			animation.animation="placeholder"
-		return (Globals.ball_pos - behindball*dir.normalized() - center)
+		return (ball_pos - behindball*dir.normalized() - center)
 
 func ai_kick():
+	if is_frozen:
+		return Vector2(0,0)
 	var target
 	if isorange:
 		target = Globals.ogoal
 	else:
 		target = Globals.pgoal
-	var b = Globals.ball_pos
+	var b = close_ball().position
 	return (target - position).normalized()*kickpower*(sigmoid(abs(velocity.normalized().dot(velocity - b))/100)*3 + 1)
 	#return velocity.normalized()*(velocity.normalized().dot(velocity - b)) * kickpower
 	
@@ -100,7 +121,7 @@ func _physics_process(delta):
 	else:
 		velocity = (1 - delta*falldowndrag*Globals.physics_speed)*velocity
 	velocity = (1 - delta*drag)*velocity
-	if (Globals.ball_pos - position).x < 0:
+	if (close_ball().position - position).x < 0:
 		animation.flip_h = true
 	else:
 		animation.flip_h = false
@@ -109,11 +130,13 @@ func _physics_process(delta):
 
 	if collision_info:
 		if collision_info.get_collider().is_class("CharacterBody2D") and collision:
-			var b = collision_info.get_collider().velocity
-			if collision_info.get_collider().is_ball:
-				collision_info.get_collider().on_kicked(ai_kick())
-			elif collision_info.get_collider().is_player:
-				collision_info.get_collider().velocity += velocity.normalized()*(velocity.normalized().dot(velocity - b)) * pushpower
+			var body = collision_info.get_collider()
+			var b = body.velocity
+			if body.is_ball and not is_down:
+				body.on_kicked(ai_kick())
+			elif body.is_player:
+				if not body.is_frozen:
+					body.velocity += velocity.normalized()*(velocity.normalized().dot(velocity - b)) * pushpower
 		velocity = velocity.bounce(collision_info.get_normal()) / bouncecol
 
 
@@ -128,3 +151,9 @@ func _on_timer_timeout() -> void:
 func _on_soundtimer_timeout() -> void:
 	$fishfall.play()
 	print("wawa")
+
+
+func _on_freeze_timeout() -> void:
+	is_frozen = false
+	$ices.position = Vector2(-999999,0)
+	

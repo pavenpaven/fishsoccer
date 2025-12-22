@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://denvm8gwgwmm5"]
+[gd_scene load_steps=14 format=3 uid="uid://bsk8jqyv0huwr"]
 
-[ext_resource type="Script" uid="uid://c4e8qavdr5qf2" path="res://Scripts/seagrass.gd" id="1_1p6a4"]
+[ext_resource type="Script" uid="uid://cgny5548ijhu8" path="res://Scripts/seagrass.gd" id="1_1p6a4"]
 [ext_resource type="Texture2D" uid="uid://l37danc3kegd" path="res://Assets/seagrass.png" id="2_1p6a4"]
 [ext_resource type="AudioStream" uid="uid://ccn8eff21f4qw" path="res://Assets/seaweedlandsfx.mp3" id="3_skl4x"]
 
@@ -80,19 +80,19 @@ animations = [{
 script = ExtResource("1_1p6a4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1.0041668)
+scale = Vector2(1, 1.00417)
 shape = SubResource("CircleShape2D_yhknd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = -2
-position = Vector2(0, 0.5000007)
-scale = Vector2(1.0625, 1.0312501)
+position = Vector2(0, 0.500001)
+scale = Vector2(1.0625, 1.03125)
 sprite_frames = SubResource("SpriteFrames_s8854")
 autoplay = "default"
 
 [node name="seagrasssound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_skl4x")
-bus = &"sfx"
+bus = &"Sfx"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finish"]

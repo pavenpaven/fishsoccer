@@ -1,12 +1,13 @@
-[gd_scene load_steps=32 format=3 uid="uid://c76pmhb8fsdbd"]
+[gd_scene load_steps=38 format=3 uid="uid://c76pmhb8fsdbd"]
 
 [ext_resource type="Texture2D" uid="uid://cn3jb10nnm85w" path="res://Assets/pixilart-sprite.png" id="1_ikyhy"]
-[ext_resource type="Script" uid="uid://d0xgcrswic3wx" path="res://Scripts/player.gd" id="2_vyhx5"]
+[ext_resource type="Script" uid="uid://bs81q5xi165op" path="res://Scripts/player.gd" id="2_vyhx5"]
 [ext_resource type="Texture2D" uid="uid://6eq1ytaqaump" path="res://Assets/fishrooll.png" id="3_pnvnn"]
 [ext_resource type="Texture2D" uid="uid://c3lc6s7l8qc3a" path="res://Assets/fishnaldo_andra.png" id="4_slnvg"]
 [ext_resource type="Texture2D" uid="uid://vtdcmu7aks5a" path="res://Assets/fishrooll_andra.png" id="5_oyug6"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="6_oyug6"]
 [ext_resource type="AudioStream" uid="uid://ch32vewfc175p" path="res://Assets/fishfall.mp3" id="7_5rf1s"]
+[ext_resource type="Texture2D" uid="uid://dfiq4jowa3p62" path="res://Assets/ice_block.png" id="8_j4a30"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vyhx5"]
 
@@ -192,6 +193,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2us4"]
+atlas = ExtResource("8_j4a30")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lori"]
+atlas = ExtResource("8_j4a30")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m3kql"]
+atlas = ExtResource("8_j4a30")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_teql8"]
+atlas = ExtResource("8_j4a30")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v08gh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2us4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lori")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m3kql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_teql8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="FotballPlayer" type="CharacterBody2D"]
 script = ExtResource("2_vyhx5")
 
@@ -199,8 +236,9 @@ script = ExtResource("2_vyhx5")
 shape = SubResource("CircleShape2D_vyhx5")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_0g5x3")
-animation = &"placeholder"
+animation = &"odefault"
 autoplay = "odefault"
 
 [node name="Timer" type="Timer" parent="."]
@@ -210,7 +248,15 @@ one_shot = true
 
 [node name="fishfall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_5rf1s")
-bus = &"sfx"
+bus = &"Sfx"
+
+[node name="ices" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -5)
+sprite_frames = SubResource("SpriteFrames_v08gh")
+
+[node name="Freeze" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="soundtimer" to="." method="_on_soundtimer_timeout"]
+[connection signal="timeout" from="Freeze" to="." method="_on_freeze_timeout"]
