@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://cvi0qt68n8yhk"]
 
-[ext_resource type="Texture2D" uid="uid://dvjqkjaiuanqj" path="res://Assets/buttonreturndefault.PNG" id="1_3anfm"]
-[ext_resource type="Script" uid="uid://cmqydjb2uu060" path="res://Scripts/deathscreen.gd" id="1_nj0ii"]
+[ext_resource type="Texture2D" uid="uid://dvbag4euw4k7v" path="res://Assets/buttonreturndefault.PNG" id="1_3anfm"]
+[ext_resource type="Script" uid="uid://co2mhfo30d4rm" path="res://Scripts/deathscreen.gd" id="1_nj0ii"]
 [ext_resource type="AudioStream" uid="uid://d4nmh8gyca7ou" path="res://Assets/fishsoccermusicalt.mp3" id="2_alrkc"]
-[ext_resource type="Texture2D" uid="uid://dx437b3ljlhkl" path="res://Assets/buttonreturnpressed.PNG" id="2_nj0ii"]
+[ext_resource type="Texture2D" uid="uid://blmah1hnwskr1" path="res://Assets/buttonreturnpressed.PNG" id="2_nj0ii"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="4_avh6a"]
 [ext_resource type="FontFile" uid="uid://37lktpihwkdm" path="res://Assets/PixelOperator8-Bold.ttf" id="5_qnoyp"]
 
@@ -80,7 +80,7 @@ zoom = Vector2(2, 2)
 
 [node name="background" type="AnimatedSprite2D" parent="."]
 z_index = -5
-position = Vector2(0, -7)
+position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_qnoyp")
 autoplay = "default"
 
@@ -103,5 +103,25 @@ text = "YOU
 DIED!
 "
 horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="."]
+offset_left = -144.0
+offset_top = -55.0
+offset_right = 150.0
+offset_bottom = -23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_qnoyp")
+theme_override_font_sizes/font_size = 31
+text = "Score 1123"
+
+[node name="HighScore" type="Label" parent="."]
+offset_left = -153.0
+offset_top = 3.0
+offset_right = 165.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_qnoyp")
+theme_override_font_sizes/font_size = 24
+text = "Highscore 1234"
 
 [connection signal="pressed" from="Control/return" to="." method="_on_return_pressed"]
