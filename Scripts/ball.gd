@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var maxspeed   = 1000
 @export var lifespan   = 20
 @export var is_fake   = false
+@export var decoyscoremul = 1
 var is_player = false
 var is_ball   = true
 var collision = true

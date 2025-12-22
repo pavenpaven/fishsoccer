@@ -2,10 +2,15 @@ extends Node2D
 
 @export var dot_dist = 30
 @export var countdown_length = 30
+@export var expb             = 0.97
+@export var goaldiffmul      = 0.5
 @onready var countdown : Timer = $countdown
 @onready var orange_scoreboard : Label = $OrangeScore
 @onready var purple_scoreboard : Label = $PurpleScore
 @onready var timedisplay : Label = $Time
+@onready var scoreboard  : Label = $Score
+
+var score = 0
 var dots = []
 var dragging_from = null
 var legal  = false
@@ -76,7 +81,10 @@ func _input(event):
 		draw_arrow((get_viewport().get_mouse_position() + Vector2(90, -90))/1.7, dragging_from.position + Vector2(20,20))
 
 func _process(delta):
-	timedisplay.text = str(ceil(countdown.time_left))
+	if countdown.time_left==0.0:
+		timedisplay.text = "OT"
+	else:
+		timedisplay.text = str(ceil(countdown.time_left))
 
 func undraw_arrow():
 	for i in dots:
@@ -146,4 +154,11 @@ func _on_mouse_exited_placezone() -> void:
 
 func _on_countdown_timeout() -> void:
 	get_tree().change_scene_to_file("res://Scenes/deathscreen.tscn")
-	#get_tree().reload_scene()
+
+
+func _on_scoretimer_cycle() -> void:
+	var scoremul = Globals.scoremul
+	score += ceil(10*scoremul * (1 + abs(orange_goals - purple_goals)))
+	scoreboard.text = str(score)
+	Globals.scoremul = (scoremul - 1)*expb + 1
+	

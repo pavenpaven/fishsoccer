@@ -1,15 +1,15 @@
 [gd_scene load_steps=34 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://5nsbxn11hdvh" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="7_cryvv"]
 [ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="9_uhpha"]
 [ext_resource type="AudioStream" uid="uid://b47w2y4c72377" path="res://Assets/newfishsoccermusic.mp3" id="10_cryvv"]
-[ext_resource type="PackedScene" path="res://Scenes/goal.tscn" id="11_he1kn"]
-[ext_resource type="PackedScene" path="res://Scenes/thrower.tscn" id="11_uhpha"]
+[ext_resource type="PackedScene" uid="uid://bcxifn1uiqdu1" path="res://Scenes/goal.tscn" id="11_he1kn"]
+[ext_resource type="PackedScene" uid="uid://clekvgj8dhl3h" path="res://Scenes/thrower.tscn" id="11_uhpha"]
 [ext_resource type="Texture2D" uid="uid://b3r5ms6630i58" path="res://Assets/x.png" id="12_og6s1"]
 [ext_resource type="Texture2D" uid="uid://bsqfqjvlahtdq" path="res://Assets/pil.png" id="12_uhpha"]
 [ext_resource type="Texture2D" uid="uid://by2yrwyrh5lwg" path="res://Assets/scoreboard.png" id="13_og6s1"]
@@ -280,7 +280,7 @@ sprite_frames = SubResource("SpriteFrames_3uadn")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="canplace"]
 position = Vector2(0, -1)
-polygon = PackedVector2Array(93, 295, 95, 226, 120, 225, 120, 107, 96, 107, 93, 21, 491, 21, 490, 107, 466, 107, 466, 226, 490, 226, 491, 314, 92, 315)
+polygon = PackedVector2Array(108, 301, 107, 226, 120, 226, 120, 107, 106, 107, 106, 27, 483, 26, 483, 107, 466, 107, 466, 226, 482, 226, 484, 306, 104, 306)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(325.00003, -25)
@@ -313,13 +313,28 @@ text = "0"
 [node name="Time" type="Label" parent="."]
 texture_filter = 1
 texture_repeat = 1
-offset_left = 473.0
-offset_top = -61.0
-offset_right = 548.0
-offset_bottom = -1.0
+offset_left = 451.0
+offset_top = -68.0
+offset_right = 526.0
+offset_bottom = -8.0
 theme_override_fonts/font = ExtResource("14_eb2ue")
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 55
 text = "test"
+
+[node name="Score" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 450.0
+offset_top = -47.0
+offset_right = 525.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("14_eb2ue")
+theme_override_font_sizes/font_size = 72
+text = "0
+"
+
+[node name="Scoretimer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="goal" from="Goal" to="." method="_on_orange_goal_goal"]
 [connection signal="goal" from="Goal2" to="." method="_on_purple_goal_goal"]
@@ -327,3 +342,4 @@ text = "test"
 [connection signal="timeout" from="countdown" to="." method="_on_countdown_timeout"]
 [connection signal="mouse_entered" from="canplace" to="." method="_on_mouse_entered_placezone"]
 [connection signal="mouse_exited" from="canplace" to="." method="_on_mouse_exited_placezone"]
+[connection signal="timeout" from="Scoretimer" to="." method="_on_scoretimer_cycle"]
