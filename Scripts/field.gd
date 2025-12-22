@@ -145,4 +145,5 @@ func _on_mouse_exited_placezone() -> void:
 
 
 func _on_countdown_timeout() -> void:
-	get_tree().reload_scene()
+	get_tree().change_scene_to_file("res://Scenes/deathscreen.tscn")
+	#get_tree().reload_scene()
