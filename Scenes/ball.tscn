@@ -77,5 +77,10 @@ autoplay = "default"
 
 [node name="footballsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_376qj")
+bus = &"Sfx"
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bcxifn1uiqdu1"]
 
 [ext_resource type="Texture2D" uid="uid://ccgqr1r3jehs2" path="res://Assets/goalfish.PNG" id="1_paeek"]
-[ext_resource type="Script" path="res://Scripts/goal.gd" id="1_s0pnd"]
+[ext_resource type="Script" uid="uid://xm2fj1tkfloj" path="res://Scripts/goal.gd" id="1_s0pnd"]
 
 [node name="Goal" type="StaticBody2D"]
 script = ExtResource("1_s0pnd")

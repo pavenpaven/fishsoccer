@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dcok16atsjset"]
+
+[ext_resource type="Texture2D" uid="uid://n7fuw6v7bnbd" path="res://Assets/dot.png" id="1_7ilwh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wye70"]
+atlas = ExtResource("1_7ilwh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtp1d"]
+atlas = ExtResource("1_7ilwh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnu5w"]
+atlas = ExtResource("1_7ilwh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_41tk4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wye70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtp1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnu5w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Dot" type="AnimatedSprite2D"]
+z_index = 4
+sprite_frames = SubResource("SpriteFrames_41tk4")
+autoplay = "default"
+frame_progress = 0.928006
