@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://dmk2buejfmaj3"]
 
 [ext_resource type="Texture2D" uid="uid://bnumtsofh5m36" path="res://Assets/socceranim.png" id="1_d60mj"]
-[ext_resource type="Script" uid="uid://btyl50smx6l8s" path="res://Scripts/ball.gd" id="1_ij5cq"]
+[ext_resource type="Script" uid="uid://vfc20wy6samq" path="res://Scripts/ball.gd" id="1_ij5cq"]
 [ext_resource type="Texture2D" uid="uid://s0qi2at7iprf" path="res://Assets/fakeballanim.png" id="2_yk4cr"]
 [ext_resource type="AudioStream" uid="uid://bmtnq55h7oiro" path="res://Assets/footballkick.mp3" id="3_376qj"]
 
@@ -77,7 +77,7 @@ autoplay = "default"
 
 [node name="footballsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_376qj")
-bus = &"Sfx"
+bus = &"sfx"
 
 [node name="DeathTimer" type="Timer" parent="."]
 one_shot = true

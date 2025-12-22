@@ -1,7 +1,7 @@
 [gd_scene load_steps=38 format=3 uid="uid://c76pmhb8fsdbd"]
 
 [ext_resource type="Texture2D" uid="uid://cn3jb10nnm85w" path="res://Assets/pixilart-sprite.png" id="1_ikyhy"]
-[ext_resource type="Script" uid="uid://bs81q5xi165op" path="res://Scripts/player.gd" id="2_vyhx5"]
+[ext_resource type="Script" uid="uid://d0xgcrswic3wx" path="res://Scripts/player.gd" id="2_vyhx5"]
 [ext_resource type="Texture2D" uid="uid://6eq1ytaqaump" path="res://Assets/fishrooll.png" id="3_pnvnn"]
 [ext_resource type="Texture2D" uid="uid://c3lc6s7l8qc3a" path="res://Assets/fishnaldo_andra.png" id="4_slnvg"]
 [ext_resource type="Texture2D" uid="uid://vtdcmu7aks5a" path="res://Assets/fishrooll_andra.png" id="5_oyug6"]
@@ -248,7 +248,7 @@ one_shot = true
 
 [node name="fishfall" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_5rf1s")
-bus = &"Sfx"
+bus = &"sfx"
 
 [node name="ices" type="AnimatedSprite2D" parent="."]
 position = Vector2(2, -5)
