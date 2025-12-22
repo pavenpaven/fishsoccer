@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://bhnis0tpcutew" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
@@ -336,6 +336,10 @@ text = "0
 [node name="Scoretimer" type="Timer" parent="."]
 autostart = true
 
+[node name="speedtimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
 [connection signal="goal" from="Goal" to="." method="_on_orange_goal_goal"]
 [connection signal="goal" from="Goal2" to="." method="_on_purple_goal_goal"]
 [connection signal="timeout" from="ItemSpawner" to="." method="_on_item_spawner_cycle"]
@@ -343,3 +347,4 @@ autostart = true
 [connection signal="mouse_entered" from="canplace" to="." method="_on_mouse_entered_placezone"]
 [connection signal="mouse_exited" from="canplace" to="." method="_on_mouse_exited_placezone"]
 [connection signal="timeout" from="Scoretimer" to="." method="_on_scoretimer_cycle"]
+[connection signal="timeout" from="speedtimer" to="." method="_on_speedtimer_timeout"]

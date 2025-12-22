@@ -10,7 +10,6 @@ extends Node2D
 @onready var timedisplay : Label = $Time
 @onready var scoreboard  : Label = $Score
 
-var score = 0
 var dots = []
 var dragging_from = null
 var legal  = false
@@ -84,7 +83,7 @@ func _process(delta):
 	if countdown.time_left==0.0:
 		timedisplay.text = "OT"
 	else:
-		timedisplay.text = str(ceil(countdown.time_left))
+		timedisplay.text = str(int(ceil(countdown.time_left)))
 
 func undraw_arrow():
 	for i in dots:
@@ -153,12 +152,17 @@ func _on_mouse_exited_placezone() -> void:
 
 
 func _on_countdown_timeout() -> void:
+	Globals.high_score = max(Globals.high_score, Globals.score)
 	get_tree().change_scene_to_file("res://Scenes/deathscreen.tscn")
 
 
 func _on_scoretimer_cycle() -> void:
 	var scoremul = Globals.scoremul
-	score += ceil(10*scoremul * (1 + abs(orange_goals - purple_goals)))
-	scoreboard.text = str(score)
+	Globals.score += ceil(10*scoremul * (1 + abs(orange_goals - purple_goals)))
+	scoreboard.text = str(int(Globals.score))
 	Globals.scoremul = (scoremul - 1)*expb + 1
 	
+
+
+func _on_speedtimer_timeout() -> void:
+	Globals.physics_speed += 0.05
