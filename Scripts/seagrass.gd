@@ -6,7 +6,8 @@ func _ready():
 	$seagrasssound.play()
 
 func _on_body_entered(body):
-	body.seagrassed()	
+	if body.get("is_ball") and body.get("is_player"):
+		body.seagrassed()	
 	$seagrasssound.play()
 
 func _on_animation_finish() -> void:

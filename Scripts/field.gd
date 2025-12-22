@@ -1,8 +1,13 @@
 extends Node2D
 
 @export var dot_dist = 30
+@export var countdown_length = 30
+@onready var countdown : Timer = $countdown
 var dots = []
 var dragging_from = null
+var legal  = false
+var orange_goals = 0
+var purple_goals = 0
 
 func _ready():
 	for i in range(30):
@@ -17,8 +22,7 @@ func spawn_seagrass(pos):
 	var instance = scene.instantiate()		
 	add_child(instance)
 	instance.position = pos
-	print(instance.position)
-	print("added instance")
+
 
 func spawn_decoy(pos):
 	var scene = load("res://Scenes/ball.tscn")
@@ -35,11 +39,8 @@ func spawn_ice(pos):
 	add_child(instance)
 	instance.position = pos
 
-func check_legal(pos):
-	return true
-	
 func throw(pos):
-	if not check_legal(pos):
+	if not legal:
 		return null
 
 	var type = dragging_from.type
@@ -50,12 +51,10 @@ func throw(pos):
 	if type == 2:
 		spawn_decoy(pos)
 	
-	dragging_from.throw()
-	
-	
+	dragging_from.throw()   	
 	
 
-func _input(event):		
+func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			for i in get_children():
@@ -77,16 +76,28 @@ func undraw_arrow():
 	for i in dots:
 		i.position  = Vector2(0,0)
 	$Arrow.position = Vector2(0,0)
+	$BadArrow.position = Vector2(0,0)
 
 func draw_arrow(p, q):
 	var a = p - q
 	var num = floor(sqrt(a.dot(a)) / dot_dist)
 	for i in range(num):
 		dots[i].position = (dot_dist * (i + 1) * a.normalized()) + q
-	$Arrow.position = p - a.normalized()*10
-	$Arrow.rotation = atan(a.y/a.x) - 3.14/2 + 3.14
+	if legal:
+		$Arrow.position = p - a.normalized()*10
+		$Arrow.rotation = atan(a.y/a.x) - 3.14/2 + 3.14
+	else:
+		$BadArrow.position = p - a.normalized()*10
+		
 			
 func reload():
+	print(orange_goals, "", purple_goals)
+	if countdown.time_left == 0.0:
+		countdown.start(countdown_length)
+	else:
+		if orange_goals == purple_goals:
+			countdown.stop()
+	
 	var balls = Globals.balls
 	Globals.balls = []
 	for i in balls:
@@ -94,12 +105,16 @@ func reload():
 			Globals.balls.append(i)
 			i.position = Vector2(280, 160)
 			i.velocity = Vector2(0,0)
+		else:
+			i._on_death_timer_timeout()
 
 func _on_purple_goal_goal() -> void:
+	purple_goals += 1
 	reload()
 
 
 func _on_orange_goal_goal() -> void:
+	orange_goals += 1
 	reload()
 
 
@@ -113,3 +128,14 @@ func _on_item_spawner_cycle():
 		return null
 
 	throwers[randi() % len(throwers)].activate()
+
+
+func _on_mouse_entered_placezone() -> void:
+	legal = true
+
+func _on_mouse_exited_placezone() -> void:
+	legal = false
+
+
+func _on_countdown_timeout() -> void:
+	print("game over")
