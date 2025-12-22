@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnumtsofh5m36"
-path="res://.godot/imported/socceranim.png-b736a33f87510dbb97929f7c1a0815fe.ctex"
+uid="uid://dsea83tbgtqu1"
+path="res://.godot/imported/ice_emerge.png-6c0ebe6947ba01d9895d023295f5235c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/socceranim.png"
-dest_files=["res://.godot/imported/socceranim.png-b736a33f87510dbb97929f7c1a0815fe.ctex"]
+source_file="res://Assets/ice_emerge.png"
+dest_files=["res://.godot/imported/ice_emerge.png-6c0ebe6947ba01d9895d023295f5235c.ctex"]
 
 [params]
 

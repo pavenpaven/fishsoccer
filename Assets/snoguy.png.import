@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnumtsofh5m36"
-path="res://.godot/imported/socceranim.png-b736a33f87510dbb97929f7c1a0815fe.ctex"
+uid="uid://dp025mu8b8k1p"
+path="res://.godot/imported/snoguy.png-81a721ffcb2c59903c7114730097208b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/socceranim.png"
-dest_files=["res://.godot/imported/socceranim.png-b736a33f87510dbb97929f7c1a0815fe.ctex"]
+source_file="res://Assets/snoguy.png"
+dest_files=["res://.godot/imported/snoguy.png-81a721ffcb2c59903c7114730097208b.ctex"]
 
 [params]
 
