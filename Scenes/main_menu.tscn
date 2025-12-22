@@ -1,0 +1,267 @@
+[gd_scene load_steps=31 format=3 uid="uid://4pqund3nukl7"]
+
+[ext_resource type="Script" uid="uid://c6xtlvbbnjpj" path="res://Scripts/main_menu.gd" id="1_prhj0"]
+[ext_resource type="Texture2D" uid="uid://cfohtswvcgbhw" path="res://Assets/buttonstartdefault.png" id="2_tgvu4"]
+[ext_resource type="Texture2D" uid="uid://b3nkfbt7owga2" path="res://Assets/buttonstartpushed.PNG" id="3_014fd"]
+[ext_resource type="Texture2D" uid="uid://cw33h1q12lprj" path="res://Assets/buttonquitdefault.PNG" id="4_50m22"]
+[ext_resource type="Texture2D" uid="uid://476vfaik0o7" path="res://Assets/buttonquitpushed.PNG" id="5_kerfm"]
+[ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="6_50m22"]
+[ext_resource type="PackedScene" path="res://Scenes/goal.tscn" id="7_kerfm"]
+[ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="8_kerfm"]
+[ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="9_f6dey"]
+[ext_resource type="Texture2D" uid="uid://tug36ts145li" path="res://Assets/octopus.png" id="10_f6dey"]
+[ext_resource type="Texture2D" uid="uid://blg2eri0jfkdn" path="res://Assets/pompomcrabsprite.PNG" id="10_lhfhb"]
+[ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="11_byg4o"]
+[ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="13_byg4o"]
+[ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="14_axvhb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
+atlas = ExtResource("6_50m22")
+region = Rect2(0, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxj5q"]
+atlas = ExtResource("6_50m22")
+region = Rect2(0, 320, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvgtc"]
+atlas = ExtResource("6_50m22")
+region = Rect2(0, 640, 480, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nwybh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fir65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxj5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvgtc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mchkl"]
+atlas = ExtResource("9_f6dey")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1bir"]
+atlas = ExtResource("9_f6dey")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhfhb"]
+atlas = ExtResource("10_f6dey")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byg4o"]
+atlas = ExtResource("10_f6dey")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_np656"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mchkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1bir")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhfhb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byg4o")
+}],
+"loop": true,
+"name": &"octopus",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf3c4"]
+atlas = ExtResource("10_lhfhb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2ds7"]
+atlas = ExtResource("10_lhfhb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jbq51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf3c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2ds7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bthms"]
+atlas = ExtResource("11_byg4o")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_do7ap"]
+atlas = ExtResource("11_byg4o")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6h13"]
+atlas = ExtResource("11_byg4o")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_btm8u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bthms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_do7ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6h13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="main menu" type="Node2D"]
+script = ExtResource("1_prhj0")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="start" type="TextureButton" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = -60.0
+offset_top = -142.0
+offset_right = 68.0
+offset_bottom = -14.0
+texture_normal = ExtResource("2_tgvu4")
+texture_pressed = ExtResource("3_014fd")
+
+[node name="quit" type="TextureButton" parent="Control"]
+z_index = 1
+layout_mode = 0
+offset_left = -57.0
+offset_top = 36.0
+offset_right = 71.0
+offset_bottom = 164.0
+texture_normal = ExtResource("4_50m22")
+texture_pressed = ExtResource("5_kerfm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-325, -166)
+polygon = PackedVector2Array(91, 113, 91, 17, 495, 17, 495, 113, 529, 113, 529, 216, 495, 216, 495, 316, 91, 316, 91, 216, 57, 216, 57, 112, 45, 112, 47, 326, 539, 326, 539, 6, 53, 6, 53, 107, 68, 113)
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+z_index = -5
+position = Vector2(-32, 0)
+sprite_frames = SubResource("SpriteFrames_nwybh")
+autoplay = "default"
+
+[node name="Goal" parent="." instance=ExtResource("7_kerfm")]
+position = Vector2(152, -2)
+
+[node name="Goal2" parent="." instance=ExtResource("7_kerfm")]
+position = Vector2(-214, -3)
+scale = Vector2(-1, -1)
+
+[node name="seats" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="seats"]
+position = Vector2(240.00012, -127.99988)
+rotation = 1.5708
+texture = ExtResource("8_kerfm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="seats"]
+position = Vector2(240.00012, -63.999878)
+rotation = 1.5708
+texture = ExtResource("8_kerfm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="seats"]
+position = Vector2(240.00012, 0.00012207031)
+rotation = 1.5708
+texture = ExtResource("8_kerfm")
+
+[node name="Sprite2D4" type="Sprite2D" parent="seats"]
+position = Vector2(240.00012, 64.00012)
+rotation = 1.5708
+texture = ExtResource("8_kerfm")
+
+[node name="Sprite2D5" type="Sprite2D" parent="seats"]
+position = Vector2(240.00012, 128.00012)
+rotation = 1.5708
+texture = ExtResource("8_kerfm")
+
+[node name="fishfan" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(242.20007, -66)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_np656")
+autoplay = "default"
+
+[node name="pompomcrab" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(245.20007, -3)
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_jbq51")
+autoplay = "default"
+
+[node name="bluecrab" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(243.20007, 58)
+rotation = -1.5708
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_btm8u")
+autoplay = "default"
+
+[node name="fakeoctopus" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(234, -134)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_np656")
+animation = &"octopus"
+autoplay = "octopus"
+
+[node name="fotballplayers" type="Node" parent="."]
+
+[node name="FotballPlayer" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+position = Vector2(-147, -82)
+isorange = false
+
+[node name="FotballPlayer2" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+position = Vector2(122, 103)
+
+[node name="FotballPlayer3" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+position = Vector2(-149, 102)
+
+[node name="FotballPlayer4" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+position = Vector2(125, -84)
+isorange = false
+
+[node name="Ball" parent="." instance=ExtResource("14_axvhb")]
+position = Vector2(-3, -4)
+
+[connection signal="pressed" from="Control/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/quit" to="." method="_on_quit_pressed"]

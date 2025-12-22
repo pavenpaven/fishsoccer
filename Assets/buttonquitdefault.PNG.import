@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tug36ts145li"
-path="res://.godot/imported/octopus.png-a6ca9afc7bb6af7efc8325779d3c6952.ctex"
+uid="uid://cw33h1q12lprj"
+path="res://.godot/imported/buttonquitdefault.PNG-c596d5b97a24d096279cd9b3ad8890f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/octopus.png"
-dest_files=["res://.godot/imported/octopus.png-a6ca9afc7bb6af7efc8325779d3c6952.ctex"]
+source_file="res://Assets/buttonquitdefault.PNG"
+dest_files=["res://.godot/imported/buttonquitdefault.PNG-c596d5b97a24d096279cd9b3ad8890f4.ctex"]
 
 [params]
 
