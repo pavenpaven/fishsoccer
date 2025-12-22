@@ -1,15 +1,15 @@
 [gd_scene load_steps=27 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://5nsbxn11hdvh" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="7_cryvv"]
 [ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="9_uhpha"]
 [ext_resource type="AudioStream" uid="uid://b47w2y4c72377" path="res://Assets/newfishsoccermusic.mp3" id="10_cryvv"]
-[ext_resource type="PackedScene" uid="uid://bcxifn1uiqdu1" path="res://Scenes/goal.tscn" id="11_he1kn"]
-[ext_resource type="PackedScene" uid="uid://clekvgj8dhl3h" path="res://Scenes/thrower.tscn" id="11_uhpha"]
+[ext_resource type="PackedScene" path="res://Scenes/goal.tscn" id="11_he1kn"]
+[ext_resource type="PackedScene" path="res://Scenes/thrower.tscn" id="11_uhpha"]
 [ext_resource type="Texture2D" uid="uid://bsqfqjvlahtdq" path="res://Assets/pil.png" id="12_uhpha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
@@ -201,6 +201,7 @@ frame_progress = 0.663108
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_cryvv")
 autoplay = true
+bus = &"music"
 
 [node name="Goal" parent="." instance=ExtResource("11_he1kn")]
 position = Vector2(477, 166)
