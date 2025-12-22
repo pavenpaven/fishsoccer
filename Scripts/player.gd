@@ -1,10 +1,10 @@
 class_name FotballPlayer extends CharacterBody2D
 @onready var fishfall: AudioStreamPlayer2D = $fishfall
-@export var accel     = 500
+@export var accel     = 400
 @export var bouncecol = 1.5
 @export var drag      = 0.7
 @export var falldowndrag = 1
-@export var kickpower = 100.0
+@export var kickpower = 80.0
 @export var pushpower = 0.5
 @export var seagrassstun = 2.0
 @export var unprecissionshot = 100.0

@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="12_5n0dv"]
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="13_ne6ao"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="14_tt8ml"]
-[ext_resource type="FontFile" uid="uid://bnqp46n3ysfan" path="res://Assets/PixelOperator8-Bold.ttf" id="15_fmarx"]
+[ext_resource type="FontFile" uid="uid://37lktpihwkdm" path="res://Assets/PixelOperator8-Bold.ttf" id="15_fmarx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
 atlas = ExtResource("6_4nkqq")
