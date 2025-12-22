@@ -17,7 +17,6 @@ var orange_goals = 0
 var purple_goals = 0
 
 func _ready():
-	print("ready")
 	Globals.scoremul = 1
 	Globals.score = 0
 	for i in range(30):
@@ -83,7 +82,6 @@ func _input(event):
 		draw_arrow((get_viewport().get_mouse_position() + Vector2(90, -90))/1.7, dragging_from.position + Vector2(20,20))
 
 func _process(delta):
-	print(Globals.scoremul)
 	if countdown.time_left==0.0:
 		timedisplay.text = "OT"
 	else:
@@ -160,6 +158,13 @@ func _on_countdown_timeout() -> void:
 func _on_scoretimer_cycle() -> void:
 	var scoremul = Globals.scoremul
 	Globals.score += ceil(10*scoremul * (1 + abs(orange_goals - purple_goals)))
+	if Globals.scoremul < 3:
+		scoreboard.set("theme_override_colors/font_color", Color.WHITE)
+	if Globals.scoremul > 6:
+		scoreboard.set("theme_override_colors/font_color", Color8(255,58,10))
+	if (Globals.scoremul > 3) and (Globals.scoremul < 6):
+		scoreboard.set("theme_override_colors/font_color", Color8(255,203,3))
+		
 	scoreboard.text = str(int(Globals.score))
 	Globals.scoremul = (scoremul - 1)*expb + 1
 	
