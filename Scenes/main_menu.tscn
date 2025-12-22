@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://4pqund3nukl7"]
+[gd_scene load_steps=34 format=3 uid="uid://4pqund3nukl7"]
 
 [ext_resource type="Script" uid="uid://c6xtlvbbnjpj" path="res://Scripts/main_menu.gd" id="1_8dnnj"]
 [ext_resource type="Texture2D" uid="uid://cfohtswvcgbhw" path="res://Assets/buttonstartdefault.png" id="2_m3bi6"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="13_ne6ao"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="14_tt8ml"]
 [ext_resource type="FontFile" uid="uid://37lktpihwkdm" path="res://Assets/PixelOperator8-Bold.ttf" id="15_fmarx"]
+[ext_resource type="AudioStream" uid="uid://d4nmh8gyca7ou" path="res://Assets/fishsoccermusicalt.mp3" id="16_m3bi6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
 atlas = ExtResource("6_4nkqq")
@@ -151,7 +152,7 @@ offset_bottom = 40.0
 [node name="start" type="TextureButton" parent="Control"]
 z_index = 1
 layout_mode = 0
-offset_left = -60.0
+offset_left = -97.0
 offset_top = -142.0
 offset_right = 68.0
 offset_bottom = -14.0
@@ -161,15 +162,16 @@ texture_pressed = ExtResource("3_wyh8j")
 [node name="quit" type="TextureButton" parent="Control"]
 z_index = 1
 layout_mode = 0
-offset_left = -57.0
-offset_top = 36.0
+offset_left = -99.0
+offset_top = 35.0
 offset_right = 71.0
 offset_bottom = 164.0
 texture_normal = ExtResource("4_ujyyl")
 texture_pressed = ExtResource("5_mkpwh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.7, 1.7)
+offset = Vector2(-30, 0)
+zoom = Vector2(2, 2)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -269,9 +271,9 @@ position = Vector2(-3, -4)
 [node name="Label" type="Label" parent="."]
 z_index = 5
 texture_filter = 1
-offset_left = -131.0
+offset_left = -170.0
 offset_top = -29.0
-offset_right = 125.0
+offset_right = 86.0
 offset_bottom = 78.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0.20280734, 0.6235483, 0.97146875, 1)
@@ -286,6 +288,11 @@ text = "FISHY
 FOOTBALL
 "
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_m3bi6")
+volume_db = 0.001
+autoplay = true
 
 [connection signal="pressed" from="Control/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/quit" to="." method="_on_quit_pressed"]
