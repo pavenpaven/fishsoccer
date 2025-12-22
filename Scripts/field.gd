@@ -3,6 +3,9 @@ extends Node2D
 @export var dot_dist = 30
 @export var countdown_length = 30
 @onready var countdown : Timer = $countdown
+@onready var orange_scoreboard : Label = $OrangeScore
+@onready var purple_scoreboard : Label = $PurpleScore
+@onready var timedisplay : Label = $Time
 var dots = []
 var dragging_from = null
 var legal  = false
@@ -63,14 +66,17 @@ func _input(event):
 						dragging_from = i
 
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and dragging_from:
-			throw((get_viewport().get_mouse_position() + Vector2(65,10)) / 2)
+			throw((get_viewport().get_mouse_position() + Vector2(90, -90)) / 1.7)
 
 	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		dragging_from = false
 		
 	undraw_arrow()
 	if dragging_from:
-		draw_arrow((get_viewport().get_mouse_position() + Vector2(65,10))/2, dragging_from.position + Vector2(20,20))
+		draw_arrow((get_viewport().get_mouse_position() + Vector2(90, -90))/1.7, dragging_from.position + Vector2(20,20))
+
+func _process(delta):
+	timedisplay.text = str(ceil(countdown.time_left))
 
 func undraw_arrow():
 	for i in dots:
@@ -91,7 +97,6 @@ func draw_arrow(p, q):
 		
 			
 func reload():
-	print(orange_goals, "", purple_goals)
 	if countdown.time_left == 0.0:
 		countdown.start(countdown_length)
 	else:
@@ -110,11 +115,13 @@ func reload():
 
 func _on_purple_goal_goal() -> void:
 	purple_goals += 1
+	purple_scoreboard.text = str(purple_goals)
 	reload()
 
 
 func _on_orange_goal_goal() -> void:
 	orange_goals += 1
+	orange_scoreboard.text = str(orange_goals)
 	reload()
 
 
@@ -138,4 +145,4 @@ func _on_mouse_exited_placezone() -> void:
 
 
 func _on_countdown_timeout() -> void:
-	print("game over")
+	get_tree().reload_scene()

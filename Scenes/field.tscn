@@ -1,16 +1,19 @@
-[gd_scene load_steps=27 format=3 uid="uid://dbhnvnrnbpmqf"]
+[gd_scene load_steps=34 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://5nsbxn11hdvh" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="7_cryvv"]
 [ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="9_uhpha"]
 [ext_resource type="AudioStream" uid="uid://b47w2y4c72377" path="res://Assets/newfishsoccermusic.mp3" id="10_cryvv"]
-[ext_resource type="PackedScene" path="res://Scenes/goal.tscn" id="11_he1kn"]
-[ext_resource type="PackedScene" path="res://Scenes/thrower.tscn" id="11_uhpha"]
+[ext_resource type="PackedScene" uid="uid://bcxifn1uiqdu1" path="res://Scenes/goal.tscn" id="11_he1kn"]
+[ext_resource type="PackedScene" uid="uid://clekvgj8dhl3h" path="res://Scenes/thrower.tscn" id="11_uhpha"]
+[ext_resource type="Texture2D" uid="uid://b3r5ms6630i58" path="res://Assets/x.png" id="12_og6s1"]
 [ext_resource type="Texture2D" uid="uid://bsqfqjvlahtdq" path="res://Assets/pil.png" id="12_uhpha"]
+[ext_resource type="Texture2D" uid="uid://by2yrwyrh5lwg" path="res://Assets/scoreboard.png" id="13_og6s1"]
+[ext_resource type="FontFile" uid="uid://bakcjjat5epv5" path="res://Assets/m3x6.ttf" id="14_eb2ue"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
 atlas = ExtResource("3_s1lr2")
@@ -121,6 +124,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhpha"]
+atlas = ExtResource("12_og6s1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdvle"]
+atlas = ExtResource("12_og6s1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t20c"]
+atlas = ExtResource("12_og6s1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uadn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhpha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdvle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t20c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="field" type="Node2D"]
 script = ExtResource("1_s1lr2")
 
@@ -152,8 +184,8 @@ rotation = 1.5708
 texture = ExtResource("2_fir65")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(320, 166)
-zoom = Vector2(2, 2)
+position = Vector2(325, 135)
+zoom = Vector2(1.7, 1.7)
 
 [node name="Ball" parent="." instance=ExtResource("2_s2mji")]
 position = Vector2(292, 164)
@@ -238,6 +270,59 @@ position = Vector2(569, 162)
 scale = Vector2(1.4, 1.4)
 type = 2
 
+[node name="countdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="BadArrow" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3uadn")
+
+[node name="canplace" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="canplace"]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(108, 301, 107, 226, 120, 226, 120, 107, 106, 107, 106, 27, 483, 26, 483, 107, 466, 107, 466, 226, 482, 226, 484, 306, 104, 306)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(325.00003, -25)
+scale = Vector2(1.030303, 1)
+texture = ExtResource("13_og6s1")
+
+[node name="OrangeScore" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 155.0
+offset_top = -63.0
+offset_right = 230.0
+offset_bottom = -3.0
+theme_override_fonts/font = ExtResource("14_eb2ue")
+theme_override_font_sizes/font_size = 75
+text = "test"
+
+[node name="PurpleScore" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 285.0
+offset_top = -64.0
+offset_right = 360.0
+offset_bottom = -4.0
+theme_override_fonts/font = ExtResource("14_eb2ue")
+theme_override_font_sizes/font_size = 75
+text = "test"
+
+[node name="Time" type="Label" parent="."]
+texture_filter = 1
+texture_repeat = 1
+offset_left = 473.0
+offset_top = -61.0
+offset_right = 548.0
+offset_bottom = -1.0
+theme_override_fonts/font = ExtResource("14_eb2ue")
+theme_override_font_sizes/font_size = 75
+text = "test"
+
 [connection signal="goal" from="Goal" to="." method="_on_orange_goal_goal"]
 [connection signal="goal" from="Goal2" to="." method="_on_purple_goal_goal"]
 [connection signal="timeout" from="ItemSpawner" to="." method="_on_item_spawner_cycle"]
+[connection signal="timeout" from="countdown" to="." method="_on_countdown_timeout"]
+[connection signal="mouse_entered" from="canplace" to="." method="_on_mouse_entered_placezone"]
+[connection signal="mouse_exited" from="canplace" to="." method="_on_mouse_exited_placezone"]
