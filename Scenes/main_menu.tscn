@@ -1,30 +1,31 @@
-[gd_scene load_steps=31 format=3 uid="uid://4pqund3nukl7"]
+[gd_scene load_steps=33 format=3 uid="uid://4pqund3nukl7"]
 
-[ext_resource type="Script" uid="uid://c6xtlvbbnjpj" path="res://Scripts/main_menu.gd" id="1_prhj0"]
-[ext_resource type="Texture2D" uid="uid://cfohtswvcgbhw" path="res://Assets/buttonstartdefault.png" id="2_tgvu4"]
-[ext_resource type="Texture2D" uid="uid://b3nkfbt7owga2" path="res://Assets/buttonstartpushed.PNG" id="3_014fd"]
-[ext_resource type="Texture2D" uid="uid://cw33h1q12lprj" path="res://Assets/buttonquitdefault.PNG" id="4_50m22"]
-[ext_resource type="Texture2D" uid="uid://476vfaik0o7" path="res://Assets/buttonquitpushed.PNG" id="5_kerfm"]
-[ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="6_50m22"]
-[ext_resource type="PackedScene" path="res://Scenes/goal.tscn" id="7_kerfm"]
-[ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="8_kerfm"]
-[ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="9_f6dey"]
-[ext_resource type="Texture2D" uid="uid://tug36ts145li" path="res://Assets/octopus.png" id="10_f6dey"]
-[ext_resource type="Texture2D" uid="uid://blg2eri0jfkdn" path="res://Assets/pompomcrabsprite.PNG" id="10_lhfhb"]
-[ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="11_byg4o"]
-[ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="13_byg4o"]
-[ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="14_axvhb"]
+[ext_resource type="Script" uid="uid://c6xtlvbbnjpj" path="res://Scripts/main_menu.gd" id="1_8dnnj"]
+[ext_resource type="Texture2D" uid="uid://cfohtswvcgbhw" path="res://Assets/buttonstartdefault.png" id="2_m3bi6"]
+[ext_resource type="Texture2D" uid="uid://b3nkfbt7owga2" path="res://Assets/buttonstartpushed.PNG" id="3_wyh8j"]
+[ext_resource type="Texture2D" uid="uid://cw33h1q12lprj" path="res://Assets/buttonquitdefault.PNG" id="4_ujyyl"]
+[ext_resource type="Texture2D" uid="uid://476vfaik0o7" path="res://Assets/buttonquitpushed.PNG" id="5_mkpwh"]
+[ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="6_4nkqq"]
+[ext_resource type="PackedScene" path="res://Scenes/goal.tscn" id="7_ehtkc"]
+[ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="8_6dk6o"]
+[ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="9_jr6u5"]
+[ext_resource type="Texture2D" uid="uid://tug36ts145li" path="res://Assets/octopus.png" id="10_6m47u"]
+[ext_resource type="Texture2D" uid="uid://blg2eri0jfkdn" path="res://Assets/pompomcrabsprite.PNG" id="11_84iac"]
+[ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="12_5n0dv"]
+[ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="13_ne6ao"]
+[ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="14_tt8ml"]
+[ext_resource type="FontFile" uid="uid://bnqp46n3ysfan" path="res://Assets/PixelOperator8-Bold.ttf" id="15_fmarx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
-atlas = ExtResource("6_50m22")
+atlas = ExtResource("6_4nkqq")
 region = Rect2(0, 0, 480, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fxj5q"]
-atlas = ExtResource("6_50m22")
+atlas = ExtResource("6_4nkqq")
 region = Rect2(0, 320, 480, 320)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvgtc"]
-atlas = ExtResource("6_50m22")
+atlas = ExtResource("6_4nkqq")
 region = Rect2(0, 640, 480, 320)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nwybh"]
@@ -45,19 +46,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mchkl"]
-atlas = ExtResource("9_f6dey")
+atlas = ExtResource("9_jr6u5")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p1bir"]
-atlas = ExtResource("9_f6dey")
+atlas = ExtResource("9_jr6u5")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lhfhb"]
-atlas = ExtResource("10_f6dey")
+atlas = ExtResource("10_6m47u")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byg4o"]
-atlas = ExtResource("10_f6dey")
+atlas = ExtResource("10_6m47u")
 region = Rect2(128, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_np656"]
@@ -86,11 +87,11 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qf3c4"]
-atlas = ExtResource("10_lhfhb")
+atlas = ExtResource("11_84iac")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2ds7"]
-atlas = ExtResource("10_lhfhb")
+atlas = ExtResource("11_84iac")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jbq51"]
@@ -108,15 +109,15 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bthms"]
-atlas = ExtResource("11_byg4o")
+atlas = ExtResource("12_5n0dv")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_do7ap"]
-atlas = ExtResource("11_byg4o")
+atlas = ExtResource("12_5n0dv")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6h13"]
-atlas = ExtResource("11_byg4o")
+atlas = ExtResource("12_5n0dv")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_btm8u"]
@@ -136,8 +137,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hkdq0"]
+
 [node name="main menu" type="Node2D"]
-script = ExtResource("1_prhj0")
+script = ExtResource("1_8dnnj")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -152,8 +155,8 @@ offset_left = -60.0
 offset_top = -142.0
 offset_right = 68.0
 offset_bottom = -14.0
-texture_normal = ExtResource("2_tgvu4")
-texture_pressed = ExtResource("3_014fd")
+texture_normal = ExtResource("2_m3bi6")
+texture_pressed = ExtResource("3_wyh8j")
 
 [node name="quit" type="TextureButton" parent="Control"]
 z_index = 1
@@ -162,8 +165,8 @@ offset_left = -57.0
 offset_top = 36.0
 offset_right = 71.0
 offset_bottom = 164.0
-texture_normal = ExtResource("4_50m22")
-texture_pressed = ExtResource("5_kerfm")
+texture_normal = ExtResource("4_ujyyl")
+texture_pressed = ExtResource("5_mkpwh")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -180,10 +183,10 @@ position = Vector2(-32, 0)
 sprite_frames = SubResource("SpriteFrames_nwybh")
 autoplay = "default"
 
-[node name="Goal" parent="." instance=ExtResource("7_kerfm")]
+[node name="Goal" parent="." instance=ExtResource("7_ehtkc")]
 position = Vector2(152, -2)
 
-[node name="Goal2" parent="." instance=ExtResource("7_kerfm")]
+[node name="Goal2" parent="." instance=ExtResource("7_ehtkc")]
 position = Vector2(-214, -3)
 scale = Vector2(-1, -1)
 
@@ -192,27 +195,27 @@ scale = Vector2(-1, -1)
 [node name="Sprite2D" type="Sprite2D" parent="seats"]
 position = Vector2(240.00012, -127.99988)
 rotation = 1.5708
-texture = ExtResource("8_kerfm")
+texture = ExtResource("8_6dk6o")
 
 [node name="Sprite2D2" type="Sprite2D" parent="seats"]
 position = Vector2(240.00012, -63.999878)
 rotation = 1.5708
-texture = ExtResource("8_kerfm")
+texture = ExtResource("8_6dk6o")
 
 [node name="Sprite2D3" type="Sprite2D" parent="seats"]
 position = Vector2(240.00012, 0.00012207031)
 rotation = 1.5708
-texture = ExtResource("8_kerfm")
+texture = ExtResource("8_6dk6o")
 
 [node name="Sprite2D4" type="Sprite2D" parent="seats"]
 position = Vector2(240.00012, 64.00012)
 rotation = 1.5708
-texture = ExtResource("8_kerfm")
+texture = ExtResource("8_6dk6o")
 
 [node name="Sprite2D5" type="Sprite2D" parent="seats"]
 position = Vector2(240.00012, 128.00012)
 rotation = 1.5708
-texture = ExtResource("8_kerfm")
+texture = ExtResource("8_6dk6o")
 
 [node name="fishfan" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -246,22 +249,42 @@ autoplay = "octopus"
 
 [node name="fotballplayers" type="Node" parent="."]
 
-[node name="FotballPlayer" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+[node name="FotballPlayer" parent="fotballplayers" instance=ExtResource("13_ne6ao")]
 position = Vector2(-147, -82)
 isorange = false
 
-[node name="FotballPlayer2" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+[node name="FotballPlayer2" parent="fotballplayers" instance=ExtResource("13_ne6ao")]
 position = Vector2(122, 103)
 
-[node name="FotballPlayer3" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+[node name="FotballPlayer3" parent="fotballplayers" instance=ExtResource("13_ne6ao")]
 position = Vector2(-149, 102)
 
-[node name="FotballPlayer4" parent="fotballplayers" instance=ExtResource("13_byg4o")]
+[node name="FotballPlayer4" parent="fotballplayers" instance=ExtResource("13_ne6ao")]
 position = Vector2(125, -84)
 isorange = false
 
-[node name="Ball" parent="." instance=ExtResource("14_axvhb")]
+[node name="Ball" parent="." instance=ExtResource("14_tt8ml")]
 position = Vector2(-3, -4)
+
+[node name="Label" type="Label" parent="."]
+z_index = 5
+offset_left = -131.0
+offset_top = -29.0
+offset_right = 125.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.20280734, 0.6235483, 0.97146875, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("15_fmarx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hkdq0")
+text = "FISHY
+FOOTBALL
+"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Control/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Control/quit" to="." method="_on_quit_pressed"]
