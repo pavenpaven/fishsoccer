@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var dot_dist = 30
-@export var countdown_length = 30
+@export var countdown_length = 60
 @export var expb             = 0.97
 @export var goaldiffmul      = 0.5
 @onready var countdown : Timer = $countdown
@@ -17,6 +17,9 @@ var orange_goals = 0
 var purple_goals = 0
 
 func _ready():
+	print("ready")
+	Globals.scoremul = 1
+	Globals.score = 0
 	for i in range(30):
 		var dot = load("res://Scenes/dot.tscn").instantiate()
 		dot.frame = i % 3
@@ -110,15 +113,11 @@ func reload():
 		if orange_goals == purple_goals:
 			countdown.stop()
 	
-	var balls = Globals.balls
-	Globals.balls = []
-	for i in balls:
+	for i in Globals.balls:
 		if not i.is_fake:
-			Globals.balls.append(i)
 			i.position = Vector2(280, 160)
 			i.velocity = Vector2(0,0)
-		else:
-			i._on_death_timer_timeout()
+			
 
 func _on_purple_goal_goal() -> void:
 	purple_goals += 1
@@ -153,6 +152,7 @@ func _on_mouse_exited_placezone() -> void:
 
 func _on_countdown_timeout() -> void:
 	Globals.high_score = max(Globals.high_score, Globals.score)
+	Globals.physics_speed = 0.4
 	get_tree().change_scene_to_file("res://Scenes/deathscreen.tscn")
 
 
@@ -162,7 +162,6 @@ func _on_scoretimer_cycle() -> void:
 	scoreboard.text = str(int(Globals.score))
 	Globals.scoremul = (scoremul - 1)*expb + 1
 	
-
-
 func _on_speedtimer_timeout() -> void:
-	Globals.physics_speed += 0.05
+	Globals.physics_speed += 0.1
+	countdown_length = ceil(0.8*countdown_length)
