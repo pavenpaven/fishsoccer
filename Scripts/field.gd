@@ -16,35 +16,62 @@ func spawn_seagrass(pos):
 	var scene = load("res://Scenes/seagrass.tscn")
 	var instance = scene.instantiate()		
 	add_child(instance)
-	instance.position = (pos + Vector2(65,10)) / 2
+	instance.position = pos
 	print(instance.position)
 	print("added instance")
 
-func _input(event):
-	undraw_arrow()
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		draw_arrow((get_viewport().get_mouse_position() + Vector2(65,10))/2, Vector2(0,0))
+func spawn_decoy(pos):
+	var scene = load("res://Scenes/ball.tscn")
+	var instance = scene.instantiate()
+	add_child(instance)
+	instance.position = pos
+	instance.is_fake = true
+	instance.get_node("AnimatedSprite2D").animation = "decoy"
+	instance.get_node("DeathTimer").start(instance.lifespan)
+
+func spawn_ice(pos):
+	var scene = load("res://Scenes/iceblock.tscn")
+	var instance = scene.instantiate()
+	add_child(instance)
+	instance.position = pos
+
+func check_legal(pos):
+	return true
 	
+func throw(pos):
+	if not check_legal(pos):
+		return null
+
+	var type = dragging_from.type
+	if type == 0:
+		spawn_seagrass(pos)
+	if type == 1:
+		spawn_ice(pos)
+	if type == 2:
+		spawn_decoy(pos)
+	
+	dragging_from.throw()
+	
+	
+	
+
+func _input(event):		
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			spawn_seagrass(event.position)
+			for i in get_children():
+				if i.is_class("Area2D") and i.get("is_thrower"):
+					if i.mouse_inside and i.active:
+						dragging_from = i
 
-	if event is InputEventKey:
-		if event.keycode == KEY_F and event.pressed:
-			var pos  = get_viewport().get_mouse_position()
-			var scene = load("res://Scenes/ball.tscn")
-			var instance = scene.instantiate()
-			add_child(instance)
-			instance.position = (pos + Vector2(65,10)) / 2
-			instance.is_fake = true
-			instance.get_node("AnimatedSprite2D").animation = "decoy"
-			instance.get_node("DeathTimer").start(instance.lifespan)
-		if event.keycode == KEY_I and event.pressed:
-			var pos  = get_viewport().get_mouse_position()
-			var scene = load("res://Scenes/iceblock.tscn")
-			var instance = scene.instantiate()
-			add_child(instance)
-			instance.position = (pos + Vector2(65,10)) / 2
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and dragging_from:
+			throw((get_viewport().get_mouse_position() + Vector2(65,10)) / 2)
+
+	if not Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		dragging_from = false
+		
+	undraw_arrow()
+	if dragging_from:
+		draw_arrow((get_viewport().get_mouse_position() + Vector2(65,10))/2, dragging_from.position + Vector2(20,20))
 
 func undraw_arrow():
 	for i in dots:
@@ -57,7 +84,7 @@ func draw_arrow(p, q):
 	for i in range(num):
 		dots[i].position = (dot_dist * (i + 1) * a.normalized()) + q
 	$Arrow.position = p - a.normalized()*10
-	$Arrow.rotation = atan(a.y/a.x) - 3.14/2
+	$Arrow.rotation = atan(a.y/a.x) - 3.14/2 + 3.14
 			
 func reload():
 	var balls = Globals.balls
@@ -73,4 +100,16 @@ func _on_purple_goal_goal() -> void:
 
 
 func _on_orange_goal_goal() -> void:
-	reload()			
+	reload()
+
+
+func _on_item_spawner_cycle():
+	var throwers = []
+	for i in get_children():
+		if i.get("is_thrower") and not i.active:
+			throwers.append(i)
+
+	if not throwers:
+		return null
+
+	throwers[randi() % len(throwers)].activate()
