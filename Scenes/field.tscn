@@ -1,12 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://dbhnvnrnbpmqf"]
+[gd_scene load_steps=27 format=3 uid="uid://dbhnvnrnbpmqf"]
 
 [ext_resource type="PackedScene" uid="uid://c76pmhb8fsdbd" path="res://Scenes/fotball_player.tscn" id="1_8juqs"]
-[ext_resource type="Script" uid="uid://bigh80rkvwbq8" path="res://Scripts/field.gd" id="1_s1lr2"]
+[ext_resource type="Script" uid="uid://g21mnyiy7rwy" path="res://Scripts/field.gd" id="1_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://bbvgmq7iepekd" path="res://Assets/sitrock.PNG" id="2_fir65"]
 [ext_resource type="PackedScene" uid="uid://dmk2buejfmaj3" path="res://Scenes/ball.tscn" id="2_s2mji"]
 [ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="3_s1lr2"]
 [ext_resource type="Texture2D" uid="uid://c5htn8yd56bj3" path="res://Assets/orangefishfan.PNG" id="7_cryvv"]
-[ext_resource type="Texture2D" uid="uid://blg2eri0jfkdn" path="res://Assets/pompomcrabsprite.PNG" id="8_he1kn"]
 [ext_resource type="Texture2D" uid="uid://c5pr7il87ir8q" path="res://Assets/bluecrabsprites.PNG" id="9_uhpha"]
 [ext_resource type="AudioStream" uid="uid://b47w2y4c72377" path="res://Assets/newfishsoccermusic.mp3" id="10_cryvv"]
 [ext_resource type="PackedScene" uid="uid://bcxifn1uiqdu1" path="res://Scenes/goal.tscn" id="11_he1kn"]
@@ -58,28 +57,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_p1bir")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qf3c4"]
-atlas = ExtResource("8_he1kn")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p2ds7"]
-atlas = ExtResource("8_he1kn")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0856l"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qf3c4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p2ds7")
 }],
 "loop": true,
 "name": &"default",
@@ -212,14 +189,6 @@ sprite_frames = SubResource("SpriteFrames_t3s6f")
 autoplay = "default"
 frame_progress = 0.111549
 
-[node name="pompomcrab" type="AnimatedSprite2D" parent="."]
-z_index = 1
-position = Vector2(569, 169)
-scale = Vector2(1.2, 1.2)
-sprite_frames = SubResource("SpriteFrames_0856l")
-autoplay = "default"
-frame_progress = 0.79162
-
 [node name="bluecrab" type="AnimatedSprite2D" parent="."]
 z_index = 1
 position = Vector2(567, 230)
@@ -232,7 +201,6 @@ frame_progress = 0.663108
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_cryvv")
 autoplay = true
-bus = &"Music"
 
 [node name="Goal" parent="." instance=ExtResource("11_he1kn")]
 position = Vector2(477, 166)
@@ -255,5 +223,20 @@ z_index = 5
 sprite_frames = SubResource("SpriteFrames_wdvle")
 autoplay = "default"
 
+[node name="Thrower2" parent="." instance=ExtResource("11_uhpha")]
+position = Vector2(569, 285)
+scale = Vector2(-1, 1)
+type = 1
+
+[node name="ItemSpawner" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[node name="Thrower3" parent="." instance=ExtResource("11_uhpha")]
+position = Vector2(569, 162)
+scale = Vector2(1.4, 1.4)
+type = 2
+
 [connection signal="goal" from="Goal" to="." method="_on_orange_goal_goal"]
 [connection signal="goal" from="Goal2" to="." method="_on_purple_goal_goal"]
+[connection signal="timeout" from="ItemSpawner" to="." method="_on_item_spawner_cycle"]
