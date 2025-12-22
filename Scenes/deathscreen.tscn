@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvi0qt68n8yhk"]
+
+[ext_resource type="Texture2D" uid="uid://dvjqkjaiuanqj" path="res://Assets/buttonreturndefault.PNG" id="1_3anfm"]
+[ext_resource type="Script" uid="uid://cmqydjb2uu060" path="res://Scripts/deathscreen.gd" id="1_nj0ii"]
+[ext_resource type="Texture2D" uid="uid://dx437b3ljlhkl" path="res://Assets/buttonreturnpressed.PNG" id="2_nj0ii"]
+[ext_resource type="Texture2D" uid="uid://bg2evo8i2h1pl" path="res://Assets/footballfield.png" id="4_avh6a"]
+[ext_resource type="FontFile" uid="uid://37lktpihwkdm" path="res://Assets/PixelOperator8-Bold.ttf" id="5_qnoyp"]
+
+[sub_resource type="GDScript" id="GDScript_avh6a"]
+script/source = "extends TextureButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fir65"]
+atlas = ExtResource("4_avh6a")
+region = Rect2(0, 0, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxj5q"]
+atlas = ExtResource("4_avh6a")
+region = Rect2(0, 320, 480, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvgtc"]
+atlas = ExtResource("4_avh6a")
+region = Rect2(0, 640, 480, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnoyp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fir65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxj5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvgtc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_alrkc"]
+
+[node name="deathscreen" type="Node2D"]
+script = ExtResource("1_nj0ii")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="return" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = -63.0
+offset_top = 34.0
+offset_right = 65.0
+offset_bottom = 162.0
+texture_normal = ExtResource("1_3anfm")
+texture_pressed = ExtResource("2_nj0ii")
+script = SubResource("GDScript_avh6a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="background" type="AnimatedSprite2D" parent="."]
+z_index = -5
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_qnoyp")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="."]
+z_index = 5
+offset_left = -125.0
+offset_top = -147.0
+offset_right = 131.0
+offset_bottom = -40.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.20280734, 0.6235483, 0.97146875, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 7
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("5_qnoyp")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_alrkc")
+text = "YOU 
+DIED!
+"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Control/return" to="." method="_on_return_pressed"]
