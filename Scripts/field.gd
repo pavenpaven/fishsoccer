@@ -83,6 +83,7 @@ func _input(event):
 		draw_arrow((get_viewport().get_mouse_position() + Vector2(90, -90))/1.7, dragging_from.position + Vector2(20,20))
 
 func _process(delta):
+	print(Globals.scoremul)
 	if countdown.time_left==0.0:
 		timedisplay.text = "OT"
 	else:

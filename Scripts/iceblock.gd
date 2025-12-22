@@ -16,14 +16,14 @@ func _on_animation_finished() -> void:
 	
 
 	var has_frozen_body = false
-	var mul = 1
+	var mul = 0
 	for body in $IcingZone.get_overlapping_bodies():
 		if body.is_class("CharacterBody2D"):
 			if body.is_player:
 				mul += freezemul	
 				body.freeze()
 				has_frozen_body = true
-	Globals.scoremul *= mul
+	Globals.scoremul += mul
 	if has_frozen_body:
 		$Animation.play("static")
 		$Animation.speed_scale=4
