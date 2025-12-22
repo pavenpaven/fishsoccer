@@ -1,11 +1,17 @@
 extends StaticBody2D
+@onready var icesound: AudioStreamPlayer2D = $icesound
 
 var is_up = false
+
+func _ready():
+	$icesound.play()
 
 func _on_animation_finished() -> void:
 	if is_up:
 		queue_free()
+	
 	$Animation.animation = "static"
+	
 
 	var has_frozen_body = false
 	for body in $IcingZone.get_overlapping_bodies():
@@ -26,3 +32,4 @@ func _on_animation_finished() -> void:
 
 func _on_melt_timeout() -> void:
 	$Animation.play("static")
+	

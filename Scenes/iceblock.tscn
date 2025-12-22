@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://jlrlu0j1bjf8"]
+[gd_scene load_steps=17 format=3 uid="uid://dxnqj7dsgs2uo"]
 
-[ext_resource type="Script" uid="uid://gh74otn5fsnc" path="res://Scripts/iceblock.gd" id="1_2dvdw"]
+[ext_resource type="Script" uid="uid://bxlmq7wkvypdm" path="res://Scripts/iceblock.gd" id="1_2dvdw"]
 [ext_resource type="Texture2D" uid="uid://dsea83tbgtqu1" path="res://Assets/ice_emerge.png" id="2_53xjh"]
 [ext_resource type="Texture2D" uid="uid://cu6h662epx62r" path="res://Assets/lazycube.png" id="3_53xjh"]
+[ext_resource type="AudioStream" uid="uid://bk6eiitgu3ewf" path="res://Assets/icesfx.mp3" id="4_ddhm8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ddhm8"]
 atlas = ExtResource("2_53xjh")
@@ -113,6 +114,11 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_wjdjj")
 
 [node name="Melt" type="Timer" parent="."]
+
+[node name="icesound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ddhm8")
+volume_db = -0.26
+bus = &"sfx"
 
 [connection signal="animation_finished" from="Animation" to="." method="_on_animation_finished"]
 [connection signal="timeout" from="Melt" to="." method="_on_melt_timeout"]
